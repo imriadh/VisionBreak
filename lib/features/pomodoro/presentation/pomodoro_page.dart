@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math' as math;
 import '../providers/pomodoro_provider.dart';
-import '../../core/theme/app_theme.dart';
-import '../../core/utils/time_formatter.dart';
+import '../../../core/theme/app_theme.dart';
+import '../../../core/utils/time_formatter.dart';
 
 class PomodoroPage extends ConsumerWidget {
   const PomodoroPage({super.key});

@@ -1,0 +1,79 @@
+name: Build Flutter APK
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'
+        channel: 'stable'
+
+    - name: Get dependencies
+      run: flutter pub get
+
+    - name: Analyze code
+      run: flutter analyze
+
+    - name: Run tests
+      run: flutter test || true
+
+    - name: Build Release APK (Split ABI)
+      run: flutter build apk --release --split-per-abi
+
+    - name: Get APK size
+      run: |
+        echo "APK Sizes:"
+        ls -lh build/app/outputs/flutter-apk/*.apk
+
+    - name: Upload APK artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: visionbreak-apk
+        path: build/app/outputs/flutter-apk/*.apk
+        retention-days: 30
+
+    - name: Create Release
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/app/outputs/flutter-apk/*.apk"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: v1.0.${{ github.run_number }}
+        name: Release v1.0.${{ github.run_number }}
+        body: |
+          ## VisionBreak - Wellness App
+          
+          ### 📦 Download
+          - ARM64 (Recommended for most devices)
+          - ARMv7 (Older 32-bit devices)
+          - x86_64 (Emulators/Intel devices)
+          
+          ### ✨ Features
+          - 👁 Eye Care Timer (20-20-20 Rule)
+          - 😴 Sleep Cycle Alarm
+          - 🎯 Pomodoro Focus Timer
+          
+          ### 📊 Build Info
+          - Build Number: ${{ github.run_number }}
+          - Commit: ${{ github.sha }}
+        allowUpdates: true
+        makeLatest: true

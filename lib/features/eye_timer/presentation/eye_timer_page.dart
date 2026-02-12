@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math' as math;
 import '../providers/eye_timer_provider.dart';
-import '../../core/theme/app_theme.dart';
-import '../../core/utils/time_formatter.dart';
-import '../../core/constants/app_constants.dart';
+import '../../../core/theme/app_theme.dart';
+import '../../../core/utils/time_formatter.dart';
+import '../../../core/constants/app_constants.dart';
 
 class EyeTimerPage extends ConsumerWidget {
   const EyeTimerPage({super.key});

@@ -1,0 +1,26 @@
+# VisionBreak Analysis Options
+
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_const_literals_to_create_immutables
+    - avoid_print
+    - prefer_single_quotes
+    - sized_box_for_whitespace
+    - avoid_unnecessary_containers
+    - use_key_in_widget_constructors
+    - prefer_const_constructors_in_immutables
+    - avoid_redundant_argument_values
+    - prefer_collection_literals
+    - unnecessary_null_in_if_null_operators
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "build/**"
+  
+  errors:
+    invalid_annotation_target: ignore
