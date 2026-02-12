@@ -39,7 +39,7 @@ class AppTheme {
       surface: surfaceLight,
     ),
     scaffoldBackgroundColor: backgroundLight,
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: cardLight,
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -109,7 +109,7 @@ class AppTheme {
       surface: surfaceDark,
     ),
     scaffoldBackgroundColor: backgroundDark,
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: cardDark,
       elevation: 0,
       shape: RoundedRectangleBorder(
