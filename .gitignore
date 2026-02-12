@@ -10,6 +10,9 @@
 .svn/
 migrate_working_dir/
 
+# Flutter SDK (should not be in workspace)
+flutter/
+
 # IntelliJ related
 *.iml
 *.ipr

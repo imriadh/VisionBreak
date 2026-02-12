@@ -1,0 +1,35 @@
+{
+  "name": "VisionBreak Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "bash setup-codespaces.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Dart-Code.dart-code",
+        "Dart-Code.flutter",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "dart.flutterSdkPath": "/home/codespace/flutter",
+        "dart.previewFlutterUiGuides": true,
+        "dart.debugExternalPackageLibraries": true,
+        "files.watcherExclude": {
+          "**/.git/objects/**": true,
+          "**/build/**": true,
+          "**/.gradle/**": true
+        }
+      }
+    }
+  },
+  "forwardPorts": [8080, 8081],
+  "portsAttributes": {
+    "8080": {
+      "label": "Flutter Web",
+      "onAutoForward": "notify"
+    }
+  }
+}
